@@ -36,10 +36,10 @@
                 {% elseif is_granted('ROLE_STUDENT') %}
                 <div class="mt-1"> Bonjour {{ app.user.nickname }} </div>   
                 {% endif %}
-                <a class="btn btn-danger ms-2" href="#" >Déconnexion</a> 
+                <a class="btn btn-danger ms-2" href="{{ path('logout') }}" >Déconnexion</a> 
             {% else %}
-                <a class="btn btn-success me-2" href="#">Connexion</a>
-                <a class="btn btn-warning" href="#">Inscription</a>
+                <a class="btn btn-success me-2" href="{{ path('login') }}">Connexion</a>
+                <a class="btn btn-warning" href="{{ path('register') }}">Inscription</a>
             {% endif %}
             </div>
         </div>
