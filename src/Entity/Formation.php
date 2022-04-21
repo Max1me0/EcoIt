@@ -21,15 +21,21 @@ class Formation
     #[ORM\Column(type: 'text')]
     private $description;
 
-    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Leçon::class, orphanRemoval: true)]
-    private $leçons;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $imagePath;
+
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Section::class, orphanRemoval: true)]
+    
+    private $sections;
+
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Lesson::class, orphanRemoval: true)]
+    private $lessons;
 
     public function __construct()
     {
         $this->leçons = new ArrayCollection();
+        $this->sections = new ArrayCollection();
+        $this->lessons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,37 +65,7 @@ class Formation
         $this->description = $description;
 
         return $this;
-    }
-
-    /**
-     * @return Collection<int, Leçon>
-     */
-    public function getLeçons(): Collection
-    {
-        return $this->leçons;
-    }
-
-    public function addLeOn(Leçon $leOn): self
-    {
-        if (!$this->leçons->contains($leOn)) {
-            $this->leçons[] = $leOn;
-            $leOn->setFormation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLeOn(Leçon $leOn): self
-    {
-        if ($this->leçons->removeElement($leOn)) {
-            // set the owning side to null (unless already changed)
-            if ($leOn->getFormation() === $this) {
-                $leOn->setFormation(null);
-            }
-        }
-
-        return $this;
-    }
+    }    
 
     public function getImagePath(): ?string
     {
@@ -99,6 +75,70 @@ class Formation
     public function setImagePath(string $imagePath): self
     {
         $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Section>
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->sections->removeElement($section)) {
+            // set the owning side to null (unless already changed)
+            if ($section->getFormation() === $this) {
+                $section->setFormation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->getTitle();
+    }
+
+    /**
+     * @return Collection<int, Lesson>
+     */
+    public function getLessons(): Collection
+    {
+        return $this->lessons;
+    }
+
+    public function addLesson(Lesson $lesson): self
+    {
+        if (!$this->lessons->contains($lesson)) {
+            $this->lessons[] = $lesson;
+            $lesson->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesson(Lesson $lesson): self
+    {
+        if ($this->lessons->removeElement($lesson)) {
+            // set the owning side to null (unless already changed)
+            if ($lesson->getFormation() === $this) {
+                $lesson->setFormation(null);
+            }
+        }
 
         return $this;
     }

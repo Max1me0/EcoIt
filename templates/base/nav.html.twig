@@ -15,7 +15,7 @@
                 {% endif %}   
                 {% if is_granted('ROLE_TEACHER') and not is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                <a class="nav-link" href="#">Créer une formation</a>
+                <a class="nav-link" href=" {{ path('gestion_formation') }} ">Gestion des formations</a>
                 </li>
                 {% endif %}     
                 {% if is_granted('ROLE_STUDENT') and not is_granted('ROLE_TEACHER') %}

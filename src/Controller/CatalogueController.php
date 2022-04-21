@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Formation;
 use App\Repository\FormationRepository;
-use App\Entity\Leçon;
+use App\Entity\Lesson;
 use App\Entity\Section;
 
 class CatalogueController extends AbstractController
@@ -29,12 +29,12 @@ class CatalogueController extends AbstractController
     }
 
     #[Route('/student/catalogue/{formation}/{section}/{leçon}', name: 'catalogue_formation_consulter', methods: ['GET'])]
-    public function read_lesson(Formation $formation, Section $section, Leçon $leçon): Response
+    public function read_lesson(Formation $formation, Section $section, Lesson $lesson): Response
     {        
         return $this->render('catalogue/consulter.html.twig', [            
             'formation' => $formation,
             'section' => $section,
-            'leçon' => $leçon,
+            'leçon' => $lesson,
         ]);
     }
 }

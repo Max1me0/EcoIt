@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\LeçonRepository;
+use App\Repository\LessonRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: LeçonRepository::class)]
-class Leçon
+#[ORM\Entity(repositoryClass: LessonRepository::class)]
+class Lesson
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,11 +19,14 @@ class Leçon
     #[ORM\Column(type: 'text')]
     private $content;
 
-    #[ORM\ManyToOne(targetEntity: Section::class, inversedBy: 'leçons')]
+    #[ORM\Column(type: 'string', length: 255)]
+    private $videoPath;
+
+    #[ORM\ManyToOne(targetEntity: Section::class, inversedBy: 'lessons')]
     #[ORM\JoinColumn(nullable: false)]
     private $section;
 
-    #[ORM\ManyToOne(targetEntity: Formation::class, inversedBy: 'leçons')]
+    #[ORM\ManyToOne(targetEntity: Formation::class, inversedBy: 'lessons')]
     #[ORM\JoinColumn(nullable: false)]
     private $formation;
 
@@ -56,6 +59,18 @@ class Leçon
         return $this;
     }
 
+    public function getVideoPath(): ?string
+    {
+        return $this->videoPath;
+    }
+
+    public function setVideoPath(string $videoPath): self
+    {
+        $this->videoPath = $videoPath;
+
+        return $this;
+    }
+
     public function getSection(): ?Section
     {
         return $this->section;
@@ -78,9 +93,5 @@ class Leçon
         $this->formation = $formation;
 
         return $this;
-    }
-
-    public function __toString() {
-        return $this->getId();
     }
 }

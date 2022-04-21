@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GestionFormationController!{% endblock %}
+
+{% block body %}
+
+        <main>                
+                <div class="mt-5 d-flex justify-content-around">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h2>Créer une nouvelle formation</h2>
+                        <a class="btn btn-primary" href="{{ path('formation_new') }}">Créer</a>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h2>Créer une nouvelle section</h2>
+                        <a class="btn btn-primary" href="{{ path('section_new') }}">Créer</a>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h2>Créer une nouvelle leçon</h2>
+                        <a class="btn btn-primary" href="{{ path('lesson_new') }}">Créer</a>
+                    </div>
+                </div>
+            
+        </main>       
+        
+{% endblock %}

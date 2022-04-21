@@ -17,13 +17,18 @@ class Section
 
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
+    
+    #[ORM\ManyToOne(targetEntity: Formation::class, inversedBy: 'sections')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $formation;
 
-    #[ORM\OneToMany(mappedBy: 'section', targetEntity: Leçon::class, orphanRemoval: true)]
-    private $leçons;
+    #[ORM\OneToMany(mappedBy: 'section', targetEntity: Lesson::class, orphanRemoval: true)]
+    private $lessons;
 
     public function __construct()
     {
         $this->leçons = new ArrayCollection();
+        $this->lessons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -41,39 +46,51 @@ class Section
         $this->title = $title;
 
         return $this;
+    }    
+
+    public function __toString() {
+        return $this->getId();
+    }
+
+    public function getFormation(): ?Formation
+    {
+        return $this->formation;
+    }
+
+    public function setFormation(?Formation $formation): self
+    {
+        $this->formation = $formation;
+
+        return $this;
     }
 
     /**
-     * @return Collection<int, Leçon>
+     * @return Collection<int, Lesson>
      */
-    public function getLeçons(): Collection
+    public function getLessons(): Collection
     {
-        return $this->leçons;
+        return $this->lessons;
     }
 
-    public function addLeOn(Leçon $leOn): self
+    public function addLesson(Lesson $lesson): self
     {
-        if (!$this->leçons->contains($leOn)) {
-            $this->leçons[] = $leOn;
-            $leOn->setSection($this);
+        if (!$this->lessons->contains($lesson)) {
+            $this->lessons[] = $lesson;
+            $lesson->setSection($this);
         }
 
         return $this;
     }
 
-    public function removeLeOn(Leçon $leOn): self
+    public function removeLesson(Lesson $lesson): self
     {
-        if ($this->leçons->removeElement($leOn)) {
+        if ($this->lessons->removeElement($lesson)) {
             // set the owning side to null (unless already changed)
-            if ($leOn->getSection() === $this) {
-                $leOn->setSection(null);
+            if ($lesson->getSection() === $this) {
+                $lesson->setSection(null);
             }
         }
 
         return $this;
-    }
-
-    public function __toString() {
-        return $this->getId();
     }
 }
