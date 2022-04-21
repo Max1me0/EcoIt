@@ -28,13 +28,13 @@ class CatalogueController extends AbstractController
         ]);
     }
 
-    #[Route('/student/catalogue/{formation}/{section}/{leçon}', name: 'catalogue_formation_consulter', methods: ['GET'])]
+    #[Route('/student/catalogue/{formation}/{section}/{lesson}', name: 'catalogue_formation_consulter', methods: ['GET'])]
     public function read_lesson(Formation $formation, Section $section, Lesson $lesson): Response
     {        
         return $this->render('catalogue/consulter.html.twig', [            
             'formation' => $formation,
             'section' => $section,
-            'leçon' => $lesson,
+            'lesson' => $lesson,
         ]);
     }
 }

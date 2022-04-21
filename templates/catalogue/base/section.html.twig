@@ -4,9 +4,9 @@
     </div>
     <div>
         <ul class="nav nav-pills flex-column mb-auto">
-        {% for leçon in section.leçons %}
+        {% for lesson in section.lessons %}
             <li class="nav-item">
-                <a href="{{ path('catalogue_formation_consulter', {'formation': formation.id, 'section': section.id, 'leçon': leçon.id}) }}" class="nav-link">{{leçon.title}}</a>
+                <a href="{{ path('catalogue_formation_consulter', {'formation': formation.id, 'section': section.id, 'lesson': lesson.id}) }}" class="nav-link">{{lesson.title}}</a>
             </li>
         {% endfor %}
         </ul>

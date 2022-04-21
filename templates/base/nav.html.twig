@@ -21,10 +21,7 @@
                 {% if is_granted('ROLE_STUDENT') and not is_granted('ROLE_TEACHER') %}
                 <li class="nav-item">
                 <a class="nav-link" href="{{ path('candidature_new') }}">Devenir Formateur</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">Suivre une formation</a>
-                </li>
+                </li>                
                 {% endif %}          
             </ul>
             <div class="d-flex">
