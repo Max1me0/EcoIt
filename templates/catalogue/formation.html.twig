@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{formation.title}} {% endblock %}
+
+{% block body %}
+    
+    <main class="d-flex">    
+        {{ include('catalogue/base/aside.html.twig') }}
+        <div class="d-flex flex-column align-items-center" style="width: 85%;">
+            <h1>{{formation.title}}</h1>
+            <div>{{formation.description}}</div>        
+        </div>
+    </main>   
+
+{% endblock %}

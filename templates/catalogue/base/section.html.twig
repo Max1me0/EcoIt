@@ -1,0 +1,14 @@
+<li class="mb-1">
+    <div >
+    {{section.title}}
+    </div>
+    <div>
+        <ul class="nav nav-pills flex-column mb-auto">
+        {% for leçon in section.leçons %}
+            <li class="nav-item">
+                <a href="{{ path('catalogue_formation_consulter', {'formation': formation.id, 'section': section.id, 'leçon': leçon.id}) }}" class="nav-link">{{leçon.title}}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</li>
