@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('candidature_update', {'id': candidature.id}) }}" onsubmit="return confirm('Are you sure you want to update this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('update' ~ candidature.id) }}"> 
+    <button class="btn btn-success">Valider</button>
+</form>

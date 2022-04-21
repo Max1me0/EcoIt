@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidature{% endblock %}
+
+{% block body %}
+    <main class="container mt-4">
+        <h1>Postulez!</h1>
+        <div class="mt-4">
+
+            {{ include('candidature/_form.html.twig') }}
+
+        </div>
+    </main>
+{% endblock %}

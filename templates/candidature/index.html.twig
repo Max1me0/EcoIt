@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidature index{% endblock %}
+
+{% block body %}
+
+    <main class="container mt-4">
+        <h1>Candidature index</h1>
+
+        <div class="container mt-4">
+            <table class="table">
+                <thead>
+                    <tr>                
+                        <th>Name</th>
+                        <th>Firstname</th>                
+                        <th>Identifiant de l'utilisateur</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for candidature in candidatures %}
+                    <tr>                
+                        <td>{{ candidature.name }}</td>
+                        <td>{{ candidature.firstname }}</td>
+                        <td>{{ candidature.candidat }}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('candidature_show', {'id': candidature.id}) }}">Voir candidature</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">Pas de candidature en cours</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+{% endblock %}

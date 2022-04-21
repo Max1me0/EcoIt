@@ -10,7 +10,7 @@
                 </li>
                 {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                <a class="nav-link" href="#">Administration</a>
+                <a class="nav-link" href="{{ path('candidature_index') }}">Gestion des candidatures</a>
                 </li>
                 {% endif %}   
                 {% if is_granted('ROLE_TEACHER') and not is_granted('ROLE_ADMIN') %}
@@ -20,7 +20,7 @@
                 {% endif %}     
                 {% if is_granted('ROLE_STUDENT') and not is_granted('ROLE_TEACHER') %}
                 <li class="nav-item">
-                <a class="nav-link" href="#">Devenir Formateur</a>
+                <a class="nav-link" href="{{ path('candidature_new') }}">Devenir Formateur</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="#">Suivre une formation</a>

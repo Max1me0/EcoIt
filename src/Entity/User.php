@@ -38,6 +38,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
+    #[ORM\OneToOne(mappedBy: 'candidat', targetEntity: Candidature::class)]
+    private $candidature;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,5 +157,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->description = $description;
 
         return $this;
+    }
+
+    public function getCandidature(): ?Candidature
+    {
+        return $this->candidature;
+    }
+
+    public function setCandidature(Candidature $candidature): self
+    {
+        // set the owning side of the relation if necessary
+        if ($candidature->getCandidat() !== $this) {
+            $candidature->setCandidat($this);
+        }
+
+        $this->candidature = $candidature;
+
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->getId();
     }
 }
